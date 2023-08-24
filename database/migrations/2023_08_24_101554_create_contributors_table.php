@@ -12,6 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Task require to use sql but not php methods
         DB::statement('CREATE TABLE Contributors (
     id            BIGINT        NOT NULL AUTO_INCREMENT PRIMARY KEY,
     collection_id BIGINT        NOT NULL,
