@@ -8,6 +8,7 @@ use App\Models\Collections;
 use App\Repositories\CollectionsRepositoryInterface;
 use App\Services\CollectionsService;
 use App\Services\CollectionsServiceInterface;
+use http\Exception\InvalidArgumentException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,11 @@ class CollectionsController extends Controller
         $validatedCollection = $request->validated();
 
         return $this->service->add($validatedCollection);
+    }
+
+    public function show(string $id) {
+
+        return json_encode($this->service->getWithContributors($id));
     }
 
 }
