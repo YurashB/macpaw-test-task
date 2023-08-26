@@ -11,4 +11,13 @@ class CollectionsRepository implements CollectionsRepositoryInterface
         return DB::select('SELECT * FROM collections');
     }
 
+    public function add($collection)
+    {
+        $query = "INSERT INTO collections(title, description, target_amount, link)
+            VALUES(?, ?, ?, ?)";
+
+        return DB::insert($query, [$collection['title'], $collection['description'], $collection['target_amount'], $collection['link']]);
+    }
+
+
 }

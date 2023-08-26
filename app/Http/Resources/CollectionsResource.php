@@ -8,7 +8,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class CollectionsResource extends JsonResource
 {
 
-    //Convert collection model to JSON format
     public function toArray(Request $request): array
     {
         return [

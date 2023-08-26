@@ -23,5 +23,10 @@ class CollectionsService implements CollectionsServiceInterface
         return $this->repository->getAll();
     }
 
+    public function add($collection)
+    {
+        return $this->repository->add($collection);
+    }
+
 
 }

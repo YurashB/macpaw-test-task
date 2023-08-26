@@ -5,4 +5,5 @@ namespace App\Repositories;
 interface CollectionsRepositoryInterface
 {
     public function getAll();
+    public function add($collection);
 }

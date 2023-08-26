@@ -10,4 +10,5 @@ use Illuminate\Http\Request;
 interface CollectionsServiceInterface
 {
     public function getAll();
+    public function add($collection);
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCollectionRequest;
 use App\Http\Resources\CollectionsResource;
 use App\Models\Collections;
 use App\Repositories\CollectionsRepositoryInterface;
@@ -28,6 +29,13 @@ class CollectionsController extends Controller
     {
         $data = $this->service->getAll();
         return CollectionsResource::collection($data);
+    }
+
+    public function store(StoreCollectionRequest $request)
+    {;
+        $validatedCollection = $request->validated();
+
+        return $this->service->add($validatedCollection);
     }
 
 }
