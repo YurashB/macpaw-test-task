@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Contributors extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
+
+    public $guarded = false;
 }

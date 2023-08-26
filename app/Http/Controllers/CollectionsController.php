@@ -21,7 +21,6 @@ class CollectionsController extends Controller
         $this->service = $service;
     }
 
-
     /**
      * Display a listing of the collections.
      */

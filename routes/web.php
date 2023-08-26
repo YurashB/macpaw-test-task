@@ -11,3 +11,7 @@ Route::group(['namespace' => 'App\\Http\\Controllers\\', 'prefix' => 'collection
     Route::get('/', [CollectionsController::class, 'index']);
     Route::post('/', [CollectionsController::class, 'store']);
 });
+
+Route::group(['namespace' => 'App\\Http\\Controllers\\', 'prefix' => 'contributors'], function (){
+    Route::post('/', [\App\Http\Controllers\ContributorsController::class, 'store']);
+});

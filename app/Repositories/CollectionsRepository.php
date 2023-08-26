@@ -19,5 +19,10 @@ class CollectionsRepository implements CollectionsRepositoryInterface
         return DB::insert($query, [$collection['title'], $collection['description'], $collection['target_amount'], $collection['link']]);
     }
 
+    public function find($id)
+    {
+        return DB::select('SELECT * FROM collections WHERE id = ?', [$id]);
+    }
+
 
 }

@@ -15,6 +15,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\CollectionsRepository::class);
         $this->app->bind(\App\Services\CollectionsServiceInterface::class,
             \App\Services\CollectionsService::class);
+        $this->app->bind(\App\Repositories\ContributorsRepositoryInterface::class,
+            \App\Repositories\ContributorsRepository::class);
+        $this->app->bind(\App\Services\ContributorsServiceInterface::class,
+            \App\Services\ContributorsService::class);
     }
 
     /**
