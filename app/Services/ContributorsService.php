@@ -20,6 +20,17 @@ class ContributorsService implements ContributorsServiceInterface
         $this->collectionsRepository = $collectionsRepository;
     }
 
+    public function find($id)
+    {
+        $contributor = $this->contributorRepository->find($id);
+
+        if (sizeof($contributor) === 0) {
+            throw new EntityNotFoundException('Contributor', $id);
+        };
+
+        return $contributor;
+    }
+
 
     public function addContributorToCollection($contributor)
     {
@@ -35,6 +46,14 @@ class ContributorsService implements ContributorsServiceInterface
     public function destroy($id)
     {
         return $this->contributorRepository->delete($id);
+    }
+
+    // Expect all fields from front-end with olds ones
+    public function update($updatedContributor, $id)
+    {
+        $this->find($id);
+
+        return $this->contributorRepository->update($updatedContributor, $id);
     }
 
 

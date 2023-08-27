@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 interface CollectionsServiceInterface
 {
+    public function find($id);
     public function getAll();
 
     public function add($collection);
@@ -18,5 +19,7 @@ interface CollectionsServiceInterface
     public function filterByLeftAmount($leftAmountParameter, $action);
 
     public function destroy($id);
+
+    public function update($updatedCollection, $id);
 
 }

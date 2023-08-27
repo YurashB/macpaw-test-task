@@ -2,37 +2,32 @@
 
 namespace App\Http\Requests;
 
-
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
-use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
-class StoreCollectionRequest extends FormRequest
+class ContributorRequest extends FormRequest
 {
-
     public function rules(): array
     {
         return [
-            'title' => 'required|max:255',
-            'description' => '',
-            'target_amount' => 'required|numeric|between:0,99999999.99',
-            'link' => 'required|url'
+            'user_name' => 'required|max:255',
+            'amount' => 'required|numeric|between:0,99999999.99',
+            'collection_id' => 'required|numeric',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'title.required' => 'Title is required',
-            'title.max' => 'Title max length is 255',
-            'target_amount.required' => 'Target amount is required',
-            'target_amount.numeric' => 'Target amount must be a number',
-            'target_amount.between' => 'Target amount must be from 0 to 99999999.99',
-            'link.required' => 'Link is required',
-            'link.url' => 'Not url entered',
+            'user_name.required' => 'Username is required',
+            'user_name.max' => 'Username max length is 255',
+            'amount.required' => 'Amount is required',
+            'amount.numeric' => 'Amount must be a number',
+            'amount.between' => 'Amount must be from 0 to 99999999.99',
+            'collection_id.required' => 'Collection not selected',
+            'collection_id.number' => 'Collection not found',
 
         ];
     }
@@ -48,12 +43,11 @@ class StoreCollectionRequest extends FormRequest
             ]);
         }else{
             $response = response()->
-                json($validator->messages(), ResponseAlias::HTTP_UNPROCESSABLE_ENTITY);
+            json($validator->messages(), ResponseAlias::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         throw (new ValidationException($validator, $response))
             ->errorBag($this->errorBag)
             ->redirectTo($this->getRedirectUrl());
     }
-
 }

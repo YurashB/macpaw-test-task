@@ -64,5 +64,24 @@ class CollectionsRepository implements CollectionsRepositoryInterface
         return DB::delete('DELETE FROM collections WHERE id = ?', [$id]);
     }
 
+    public function update($updatedCollection, $id)
+    {
+        $query = 'UPDATE collections
+        SET title = ?,
+            description = ?,
+            target_amount = ?,
+            link = ?
+        WHERE id = ?';
+
+        $bindings = [
+            $updatedCollection['title'],
+            $updatedCollection['description'],
+            $updatedCollection['target_amount'],
+            $updatedCollection['link'],
+            $id];
+
+        return DB::update($query, $bindings);
+    }
+
 
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCollectionRequest;
-use App\Http\Requests\StoreContributorRequest;
+use App\Http\Requests\CollectionRequest;
+use App\Http\Requests\ContributorRequest;
 use App\Services\ContributorsServiceInterface;
 
 
@@ -18,7 +18,7 @@ class  ContributorsController extends Controller
     }
 
 
-    public function store(StoreContributorRequest $request)
+    public function store(ContributorRequest $request)
     {
         $validatedCollection = $request->validated();
 
@@ -27,6 +27,12 @@ class  ContributorsController extends Controller
 
     public function destroy(int $id){
         return $this->service->destroy($id);
+    }
+
+    public function update(ContributorRequest $request, int $id) {
+        $validatedCollection = $request->validated();
+
+        return $this->service->update($validatedCollection, $id);
     }
 
 }

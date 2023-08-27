@@ -20,6 +20,16 @@ class CollectionsService implements CollectionsServiceInterface
         $this->repository = $repository;
     }
 
+    public function find($id)
+    {
+        $data = $this->repository->find($id);
+
+        if (sizeof($data) === 0) {
+            throw new EntityNotFoundException('Collection', $id);
+        };
+    }
+
+
     public function getAll()
     {
         return $this->repository->getAll();
@@ -89,6 +99,14 @@ class CollectionsService implements CollectionsServiceInterface
     public function destroy($id)
     {
         return $this->repository->delete($id);
+    }
+
+    // Expect all fields from front-end with olds ones
+    public function update($updatedCollection, $id)
+    {
+        $this->find($id);
+
+        return $this->repository->update($updatedCollection, $id);
     }
 
 

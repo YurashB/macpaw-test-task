@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCollectionRequest;
+use App\Http\Requests\CollectionRequest;
 use App\Http\Resources\CollectionsResource;
 use App\Models\Collections;
 use App\Repositories\CollectionsRepositoryInterface;
@@ -31,26 +31,37 @@ class CollectionsController extends Controller
         return CollectionsResource::collection($data);
     }
 
-    public function store(StoreCollectionRequest $request)
-    {;
+    public function store(CollectionRequest $request)
+    {
+        ;
         $validatedCollection = $request->validated();
 
         return $this->service->add($validatedCollection);
     }
 
-    public function show(int $id) {
+    public function show(int $id)
+    {
 
         return json_encode($this->service->getWithContributors($id));
     }
 
-    public function filterByLeftAmount(Request $request){
-        $leftAmountParameter= $request->query->get('left-amount');
+    public function filterByLeftAmount(Request $request)
+    {
+        $leftAmountParameter = $request->query->get('left-amount');
         $action = $request->query->get('action');
         return json_encode($this->service->filterByLeftAmount($leftAmountParameter, $action));
     }
 
-    public function destroy(int $id) {
+    public function destroy(int $id)
+    {
         return json_encode($this->service->destroy($id));
+    }
+
+    public function update(CollectionRequest $request, int $id)
+    {
+        $validatedCollection = $request->validated();
+
+        return json_encode($this->service->update($validatedCollection, $id));
     }
 
 }
