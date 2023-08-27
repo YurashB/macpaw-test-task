@@ -38,9 +38,15 @@ class CollectionsController extends Controller
         return $this->service->add($validatedCollection);
     }
 
-    public function show(string $id) {
+    public function show(int $id) {
 
         return json_encode($this->service->getWithContributors($id));
+    }
+
+    public function filterByLeftAmount(Request $request){
+        $leftAmountParameter= $request->query->get('left-amount');
+        $action = $request->query->get('action');
+        return json_encode($this->service->filterByLeftAmount($leftAmountParameter, $action));
     }
 
 }

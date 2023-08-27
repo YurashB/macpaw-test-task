@@ -11,6 +11,8 @@ interface CollectionsServiceInterface
 {
     public function getAll();
     public function add($collection);
-
     public function getWithContributors($id);
+    public function filterByLeftAmount($leftAmountParameter, $action);
+
+
 }

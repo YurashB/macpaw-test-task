@@ -39,7 +39,7 @@ class CollectionsService implements CollectionsServiceInterface
         };
 
         $responseData = [
-            'collection' => (object) [
+            'collection' => (object)[
                 'title' => $data[0]->title,
                 'description' => $data[0]->description,
                 'target_amount' => $data[0]->target_amount,
@@ -49,7 +49,7 @@ class CollectionsService implements CollectionsServiceInterface
         ];
 
         foreach ($data as $item) {
-            $contributor = (object) [
+            $contributor = (object)[
                 $item->user_name,
                 $item->amount
             ];
@@ -60,4 +60,29 @@ class CollectionsService implements CollectionsServiceInterface
     }
 
 
+    /*
+     * Service for filtering collections. If var $leftAmountParameter is used than
+     * we filter collections where left amount less than $leftAmountParameter by default;
+     * If $action is 'bigger-than' than we filter collections where left amount is bigger than
+     * $leftAmountParameter.
+     * If $leftAmountParameter not entered we return all collections where sum off all amounts that
+     * users add less than target amount;
+     */
+    public function filterByLeftAmount($leftAmountParameter, $action = "less-than")
+    {
+        $collections = collect($this->repository->getLeftAmountCollections());
+
+        if ($leftAmountParameter) {
+            if ($action === "bigger-than") {
+                $collections = $collections->filter(function ($value) use ($leftAmountParameter) {
+                    return $value->left_amount > $leftAmountParameter;
+                });
+            } else {
+                $collections = $collections->filter(function ($collection) use ($leftAmountParameter) {
+                    return $collection->left_amount < $leftAmountParameter;
+                });
+            }
+        }
+        return $collections->values();
+    }
 }
