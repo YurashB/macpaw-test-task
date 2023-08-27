@@ -2,13 +2,9 @@
 
 namespace App\Services;
 
-use App\Http\Resources\CollectionsResource;
-use App\Models\Collections;
-use App\Repositories\CollectionsRepository;
+
 use App\Repositories\CollectionsRepositoryInterface;
-use Faker\Provider\Person;
 use Illuminate\Contracts\Queue\EntityNotFoundException;
-use Illuminate\Http\Request;
 
 class CollectionsService implements CollectionsServiceInterface
 {
