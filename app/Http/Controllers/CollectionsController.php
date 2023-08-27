@@ -28,7 +28,7 @@ class CollectionsController extends Controller
     public function index()
     {
         $data = $this->service->getAll();
-        return CollectionsResource::collection($data);
+        return json_encode($data);
     }
 
     public function store(CollectionRequest $request)
@@ -36,7 +36,7 @@ class CollectionsController extends Controller
         ;
         $validatedCollection = $request->validated();
 
-        return $this->service->add($validatedCollection);
+        return json_encode($this->service->add($validatedCollection));
     }
 
     public function show(int $id)
@@ -54,14 +54,14 @@ class CollectionsController extends Controller
 
     public function destroy(int $id)
     {
-        return json_encode($this->service->destroy($id));
+        return json_encode($this->service->destroy($id) === 1);
     }
 
     public function update(CollectionRequest $request, int $id)
     {
         $validatedCollection = $request->validated();
 
-        return json_encode($this->service->update($validatedCollection, $id));
+        return json_encode($this->service->update($validatedCollection, $id)  === 1);
     }
 
 }

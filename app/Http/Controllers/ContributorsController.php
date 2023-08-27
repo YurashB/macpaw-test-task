@@ -22,17 +22,17 @@ class  ContributorsController extends Controller
     {
         $validatedCollection = $request->validated();
 
-        return $this->service->addContributorToCollection($validatedCollection);
+        return json_encode($this->service->addContributorToCollection($validatedCollection) === 1);
     }
 
     public function destroy(int $id){
-        return $this->service->destroy($id);
+        return json_encode($this->service->destroy($id) === 1);
     }
 
     public function update(ContributorRequest $request, int $id) {
         $validatedCollection = $request->validated();
 
-        return $this->service->update($validatedCollection, $id);
+        return json_encode($this->service->update($validatedCollection, $id) === 1);
     }
 
 }

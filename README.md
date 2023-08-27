@@ -1,66 +1,233 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Bootcamp Technical Task – Back-End PHP
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## What's inside
 
-## About Laravel
+This project based on Laravel with MySQL database:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requirements
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+To run project you need PHP 8 and Laravel 10 with Apache server and SQL server
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Installation
 
-## Learning Laravel
+Clone the repository
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    LLLLLLLLLLLLLLLLLLLLLLLLLLLLgit clone git@github.com:gothinkster/laravel-realworld-example-app.git
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Switch to the repo folder
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    lllllllllllllllllllllllllllllllllcd laravel-realworld-example-app
 
-## Laravel Sponsors
+Install all the dependencies using composer
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    composer install
 
-### Premium Partners
+Copy the example env file and make the required configuration changes in the .env file
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+    cp .env.example .env
 
-## Contributing
+Run the database migrations (**Set the database connection in .env before migrating**)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    php artisan migrate
 
-## Code of Conduct
+Run the seeds with test data (**Set the database connection in .env before migrating**)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    php artisan db:seed
 
-## Security Vulnerabilities
+Start the local development server
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    php artisan serve
 
-## License
+You can now access the server at http://localhost:8000
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## API Endpoints
+
+| HTTP Verbs | Endpoints                                 | Action                      |
+|------------|-------------------------------------------|-----------------------------|
+| GET        | /collections/                             | Return list of collections  |
+| GET        | /collections/{id}                         | Return collection by id     |
+| POST       | /collections/                             | Add new collection          |
+| DELETE     | /collections/{id}                         | Delete collection by id     |
+| PATCH      | /collections/{id}                         | Update collection by id     |
+| GET        | /collections/filter/filter-by-left-amount | Return filtered collections |
+| POST       | /contributors/                            | Add new contributor         |
+| DELETE     | /contributors/{id}                        | Delete contributors by id   |
+| PATCH      | /contributors/{id}                        | Update contributors by id   |
+
+
+### Get list of Collections
+
+#### Request
+
+`GET /collections/`
+
+#### Response
+
+    [
+    {
+        "id": 2,
+        "title": "2",
+        "description": "updated",
+        "target_amount": "11111.00",
+        "link": "http://www.kuhn.com/minus-quod-cum-quia.html",
+        "created_at": "2023-08-24 19:31:32"
+    }, 
+    {
+        ...
+    }]
+
+### Get specific Collection by id
+
+#### Request
+
+`GET /collections/{id} `
+
+#### Response
+
+    {
+    "collection": {
+        "title": "Vitae cupiditate sit iste perspiciatis quia dolore veniam.",
+        "description": "Sed dignissimos sed inventore harum ipsum dolor culpa vitae. Libero deleniti porro ea aut rem et qui. Similique ut provident explicabo earum accusamus. Soluta ex ut voluptatem ut quo.",
+        "target_amount": "1578.50",
+        "link": "http://ohara.org/ex-non-sint-est-sit-voluptatibus-quis"
+    },
+    "contributors": [
+        {
+            "0": "Lonzo Marks",
+            "1": "4205.80"
+        },
+        {
+            "0": "Mrs. Cali Hackett",
+            "1": "3308.30"
+        }
+    ]
+    }
+
+
+### Add new Collection
+
+#### Request
+
+`POST /collections/ `
+
+#### Body
+
+    {
+    "title" : "title",
+    "target_amount" : 1111.99,
+    "limk": "https://drive.google.com/file"
+    }
+
+#### Response
+
+    true
+
+### Delete Collection
+
+#### Request
+
+`DELETE /collections/{id} `
+
+#### Response
+
+    true
+
+### Update Collection
+
+#### Request
+
+`PATCH /collections/{id} `
+
+#### Response
+
+    true
+
+### Filter by amount Collection
+
+#### Request
+
+`GET /collections/filter/filter-by-left-amount `
+
+#### Response
+
+    [
+    {
+        "sum_amount": "9633.40",
+        "id": 111,
+        "target_amount": "9789.00",
+        "left_amount": "155.60"
+    }
+    ]
+
+### Filter by amount Collection with params
+
+#### Request
+
+`GET /collections/filter/filter-by-left-amount?left-amount=2000&action=bigger-than `
+`GET ...action=lower-than `
+
+#### Response
+
+    [
+    {
+        "sum_amount": "2690.90",
+        "id": 105,
+        "target_amount": "5007.90",
+        "left_amount": "2317.00"
+    },
+    {
+        "sum_amount": "7053.00",
+        "id": 85,
+        "target_amount": "9521.20",
+        "left_amount": "2468.20"
+    }
+    ]
+
+### Add new contributor
+
+#### Request
+
+`POST /contributors`
+
+#### Body
+
+    {
+    "user_name" : "user_name",
+    "amount" : 1111.99,
+    "collection_id": 32
+    }
+
+#### Response
+
+    true
+
+### Update new contributor
+
+#### Request
+
+`PATCH /contributors/{id}`
+
+#### Body
+
+    {
+    "user_name" : "user_name",
+    "amount" : 1111.99,
+    "collection_id": 32
+    }
+
+#### Response
+
+    true
+
+### Update new contributor
+
+#### Delete
+
+`DELETE /contributors/{id}`
+
+#### Response
+
+    true
+
+
+## Project details

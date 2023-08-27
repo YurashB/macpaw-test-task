@@ -37,6 +37,8 @@ class CollectionsService implements CollectionsServiceInterface
 
     public function add($collection)
     {
+        $collection['description'] = $collection['description'] ?? "";
+
         return $this->repository->add($collection);
     }
 
@@ -105,6 +107,7 @@ class CollectionsService implements CollectionsServiceInterface
     public function update($updatedCollection, $id)
     {
         $this->find($id);
+        $updatedCollection['description'] = $updatedCollection['description'] ?? "";
 
         return $this->repository->update($updatedCollection, $id);
     }
