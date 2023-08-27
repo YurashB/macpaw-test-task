@@ -25,4 +25,8 @@ class  ContributorsController extends Controller
         return $this->service->addContributorToCollection($validatedCollection);
     }
 
+    public function destroy(int $id){
+        return $this->service->destroy($id);
+    }
+
 }

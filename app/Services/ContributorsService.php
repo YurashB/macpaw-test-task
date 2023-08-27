@@ -32,5 +32,10 @@ class ContributorsService implements ContributorsServiceInterface
         return $this->contributorRepository->add($contributor);
     }
 
+    public function destroy($id)
+    {
+        return $this->contributorRepository->delete($id);
+    }
+
 
 }

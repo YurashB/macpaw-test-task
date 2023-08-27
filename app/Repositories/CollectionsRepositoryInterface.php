@@ -9,4 +9,6 @@ interface CollectionsRepositoryInterface
     public function find($id);
     public function getWithContributors($id);
     public function getLeftAmountCollections();
+
+    public function delete($id);
 }

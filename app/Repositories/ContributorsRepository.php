@@ -14,5 +14,10 @@ class ContributorsRepository implements ContributorsRepositoryInterface
         return DB::insert($query, [$contributor['user_name'], $contributor['amount'],$contributor['collection_id']]);
     }
 
+    public function delete($id)
+    {
+        return DB::delete('DELETE FROM contributors WHERE id = ?', [$id]);
+    }
+
 
 }

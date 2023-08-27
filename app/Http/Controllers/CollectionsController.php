@@ -49,4 +49,8 @@ class CollectionsController extends Controller
         return json_encode($this->service->filterByLeftAmount($leftAmountParameter, $action));
     }
 
+    public function destroy(int $id) {
+        return json_encode($this->service->destroy($id));
+    }
+
 }

@@ -85,4 +85,11 @@ class CollectionsService implements CollectionsServiceInterface
         }
         return $collections->values();
     }
+
+    public function destroy($id)
+    {
+        return $this->repository->delete($id);
+    }
+
+
 }

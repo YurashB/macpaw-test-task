@@ -58,5 +58,11 @@ class CollectionsRepository implements CollectionsRepositoryInterface
 
     }
 
+    // Contributors also deletes cause set delete cascade
+    public function delete($id)
+    {
+        return DB::delete('DELETE FROM collections WHERE id = ?', [$id]);
+    }
+
 
 }
