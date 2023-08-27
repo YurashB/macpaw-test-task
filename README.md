@@ -12,11 +12,11 @@ To run project you need PHP 8 and Laravel 10 with Apache server and SQL server
 
 Clone the repository
 
-    LLLLLLLLLLLLLLLLLLLLLLLLLLLLgit clone git@github.com:gothinkster/laravel-realworld-example-app.git
+    https://github.com/YurashB/macpaw-test-task.git
 
 Switch to the repo folder
 
-    lllllllllllllllllllllllllllllllllcd laravel-realworld-example-app
+    cd macpaw-test-task
 
 Install all the dependencies using composer
 
